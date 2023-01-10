@@ -1,26 +1,25 @@
-package scooterTest.inFireFoxBrowserTest;
+package scootertest.infirefoxbrowsertest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import test.homePage;
+import ru.yandex.practicum.MainPage;
+
 import static org.junit.Assert.assertTrue;
 
-
 @RunWith(Parameterized.class)
-public class importantQuestionTest extends connectionFireFox {
-
+public class ImportantQuestionTest extends ConnectionFireFox {
     private static int listIndex;
 
     //конструктор тест-класса "Вопросы о важном" с 2 параметрами
-    public importantQuestionTest(int listIndex) {
-        importantQuestionTest.listIndex =listIndex;
+    public ImportantQuestionTest(int listIndex) {
+        ImportantQuestionTest.listIndex = listIndex;
     }
 
     //набор тестовых данных
     @Parameterized.Parameters
-    public static Object[][] getTestData(){
-        return new Object[][] {
+    public static Object[][] getTestData() {
+        return new Object[][]{
                 {0},
                 {1},
                 {2},
@@ -32,21 +31,15 @@ public class importantQuestionTest extends connectionFireFox {
         };
     }
 
-
     @Test
     public void IsVisibleTextWhenClickedButton() {
-
         //создет объект класса главной страницы
-        homePage objHomePage = new homePage(driver);
-
+        MainPage objMainPage = new MainPage(driver);
         //открывает главную страницу
-        objHomePage.openScooterPage();
-
+        objMainPage.openScooterPage();
         //кликаю по кнопке с вопросами, в зависимости от индекса
-        objHomePage.clickButtonsImportantQuestions(listIndex);
-
+        objMainPage.clickButtonsImportantQuestions(listIndex);
         //сравнивает результаты
-        assertTrue(objHomePage.contentIsDisplayed(listIndex));
+        assertTrue(objMainPage.contentIsDisplayed(listIndex));
     }
-
 }
